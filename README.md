@@ -14,7 +14,7 @@ Para utilizar este projeto, siga os passos abaixo:
 
 ## Integração com Interface Vue.js
 
-Este projeto de API deve ser integrado a uma interface Vue.js, que está armazenada em outro repositório. Você pode encontrar o repositório da interface Vue.js [aqui](link_para_o_repositorio).
+Este projeto de API deve ser integrado a uma interface Vue.js, que está armazenada em outro repositório. Você pode encontrar o repositório da interface Vue.js [desafio-web-vue](https://github.com/Thiago-Teofilo/desafio-web-vue).
 
 ## Funcionalidades do CRUD de Usuários
 
