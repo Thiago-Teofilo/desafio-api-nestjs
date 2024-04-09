@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @Entity()
+@Unique(['email', 'cpf'])
 export class User {
   @PrimaryGeneratedColumn('increment')
   id: number;
@@ -8,7 +9,7 @@ export class User {
   @Column()
   fullname: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -17,6 +18,6 @@ export class User {
   @Column()
   genre: string;
 
-  @Column()
+  @Column({ unique: true })
   cpf: string;
 }

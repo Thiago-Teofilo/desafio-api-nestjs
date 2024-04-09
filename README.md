@@ -36,7 +36,7 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
   {
     "fullname": "Exemplo Nome",
     "dateOfBirth": "1990-01-01",
-    "cpf": "123.456.789-00",
+    "cpf": "123.456.789-09",
     "genre": "Feminino",
     "email": "exemplo@email.com"
   }
@@ -47,7 +47,7 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
     "id": 1,
     "fullname": "Exemplo Nome",
     "dateOfBirth": "1990-01-01",
-    "cpf": "123.456.789-00",
+    "cpf": "123.456.789-09",
     "genre": "Feminino",
     "email": "exemplo@email.com"
   }
@@ -63,7 +63,7 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
     "id": 1,
     "fullname": "Exemplo Nome",
     "dateOfBirth": "1990-01-01",
-    "cpf": "123.456.789-00",
+    "cpf": "123.456.789-09",
     "genre": "Feminino",
     "email": "exemplo@email.com"
   }
@@ -79,7 +79,7 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
       "id": 1,
       "fullname": "Exemplo Nome",
       "dateOfBirth": "1990-01-01",
-      "cpf": "123.456.789-00",
+      "cpf": "123.456.789-09",
       "genre": "Feminino",
       "email": "exemplo@email.com"
     },
@@ -87,7 +87,7 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
       "id": 2,
       "fullname": "Segundo exemplo Nome",
       "dateOfBirth": "1990-02-01",
-      "cpf": "123.452.778-00",
+      "cpf": "987.654.321-00",
       "genre": "Masculino",
       "email": "exemplo2@email.com"    
     }
@@ -112,7 +112,7 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
     "fullname": "Exemplo novo nome",
     "email": "exemplonovo@email.com",
     "dateOfBirth": "1990-02-01",
-    "cpf": "123.452.778-00",
+    "cpf": "987.654.321-00",
     "genre": "Masculino"
   }
   ```
@@ -127,10 +127,54 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
       "id": 1,
       "fullname": "Exemplo Nome",
       "dateOfBirth": "1990-01-01",
-      "cpf": "123.456.789-00",
+      "cpf": "123.456.789-09",
       "genre": "Feminino",
       "email": "exemplo@email.com"  
   }
   ```
-
 Este é um guia básico para utilizar o projeto.
+
+## Como funciona a validação de CPF
+
+A validação do CPF segue algumas regras específicas:
+
+1. O CPF deve conter 11 dígitos numéricos.
+2. Não pode ser uma sequência de dígitos repetidos, como "111.111.111-11" ou "22222222222".
+3. Os dois dígitos verificadores devem ser calculados corretamente.
+4. O primeiro dígito verificador é calculado a partir dos primeiros 9 dígitos do CPF.
+5. O segundo dígito verificador é calculado a partir dos 10 primeiros dígitos do CPF, incluindo o primeiro dígito verificador.
+
+Se ambos os dígitos verificadores calculados coincidirem com os dígitos verificadores fornecidos no CPF, então o CPF é considerado válido.
+
+Essas são as regras básicas para validar um CPF. A função `isValidCPF` que forneci anteriormente implementa essas regras de forma mais simplificada e legível.
+
+A função `isValidCPF` verifica se um CPF é válido ou não com base em determinados critérios. Aqui estão alguns exemplos de CPFs que dariam erro e CPFs que seriam válidos de acordo com essa função:
+
+### CPFs que dariam erro:
+
+   - 000.000.000-00
+   - 111.111.111-11
+   - 222.222.222-22
+   - 333.333.333-33
+   - 444.444.444-44
+   - 555.555.555-55
+   - 666.666.666-66
+   - 777.777.777-77
+   - 888.888.888-88
+   - 999.999.999-99
+   - 123
+   - 123456789
+   - ABCDEFGHIJK
+
+### CPFs que seriam válidos:
+
+   - 123.456.789-09
+   - 987.654.321-00
+   - 01234567890
+   - 12345678909
+   - 529.982.247-25
+   - 333.444.555-66
+   - 123.456.789-09
+   - 87654321098
+
+Esses são apenas exemplos para ilustrar os diferentes casos que podem ser verificados pela função `isValidCPF`. É importante testar com uma variedade de casos para garantir que a função esteja funcionando corretamente em todas as situações.

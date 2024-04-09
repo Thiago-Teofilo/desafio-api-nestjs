@@ -1,5 +1,6 @@
 import {
   Body,
+  ConflictException,
   Controller,
   Delete,
   Get,
@@ -13,6 +14,8 @@ import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.input';
 import { UpdateUserDto } from './dto/update-user.input';
+import { isValidCPF } from '../utils/validate-cpf';
+import { formatCpf } from 'src/utils/format-cpf';
 
 @Controller('users')
 export class UsersController {
@@ -20,13 +23,21 @@ export class UsersController {
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto): Promise<User> {
-    const newUser = await this.usersService.create(createUserDto);
-
-    if (!newUser) {
-      throw new UnauthorizedException('Invalid Credentials');
+    if (!isValidCPF(createUserDto.cpf)) {
+      throw new UnauthorizedException('Invalid CPF!');
     }
 
-    return newUser;
+    createUserDto.cpf = formatCpf(createUserDto.cpf);
+
+    try {
+      const newUser = await this.usersService.create(createUserDto);
+      return newUser;
+    } catch (err) {
+      if (err.code === 'ER_DUP_ENTRY') {
+        throw new ConflictException('Data conflict!');
+      }
+      throw new Error(err.message);
+    }
   }
 
   @Put(':id')
@@ -34,13 +45,26 @@ export class UsersController {
     @Param('id') id: number,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<User> {
-    const user = await this.usersService.update(id, updateUserDto);
+    if (updateUserDto.cpf) {
+      updateUserDto.cpf = formatCpf(updateUserDto.cpf);
 
-    if (!user) {
-      throw new NotFoundException('User not exists!');
+      if (!isValidCPF(updateUserDto.cpf)) {
+        throw new UnauthorizedException('Invalid CPF!');
+      }
     }
 
-    return user;
+    try {
+      const user = await this.usersService.update(id, updateUserDto);
+      if (user) {
+        return user;
+      }
+    } catch (err) {
+      if (err.code === 'ER_DUP_ENTRY') {
+        throw new ConflictException('Data conflict!');
+      }
+      throw new Error(err.message);
+    }
+    throw new NotFoundException('User not exists!');
   }
 
   @Get()
