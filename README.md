@@ -48,7 +48,7 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
     "fullname": "Exemplo Nome",
     "dateOfBirth": "1990-01-01",
     "cpf": "123.456.789-00",
-    "genre": "Masculino",
+    "genre": "Feminino",
     "email": "exemplo@email.com"
   }
   ```
@@ -64,7 +64,7 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
     "fullname": "Exemplo Nome",
     "dateOfBirth": "1990-01-01",
     "cpf": "123.456.789-00",
-    "genre": "Masculino",
+    "genre": "Feminino",
     "email": "exemplo@email.com"
   }
   ```
