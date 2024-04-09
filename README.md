@@ -37,7 +37,7 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
     "fullname": "Exemplo Nome",
     "dateOfBirth": "1990-01-01",
     "cpf": "123.456.789-00",
-    "genre": "Masculino",
+    "genre": "Feminino",
     "email": "exemplo@email.com"
   }
   ```
@@ -80,7 +80,7 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
       "fullname": "Exemplo Nome",
       "dateOfBirth": "1990-01-01",
       "cpf": "123.456.789-00",
-      "genre": "Masculino",
+      "genre": "Feminino",
       "email": "exemplo@email.com"
     },
     {
@@ -88,10 +88,9 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
       "fullname": "Segundo exemplo Nome",
       "dateOfBirth": "1990-02-01",
       "cpf": "123.452.778-00",
-      "genre": "Feminino",
+      "genre": "Masculino",
       "email": "exemplo2@email.com"    
     }
-    // Outros usuários
   ]
   ```
 
@@ -104,7 +103,6 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
   {
     "fullname": "Exemplo novo nome",
     "email": "exemplonovo@email.com"
-    // Outros dados que deseja editar
   }
   ```
 - **Resposta:**
@@ -115,7 +113,7 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
     "email": "exemplonovo@email.com",
     "dateOfBirth": "1990-02-01",
     "cpf": "123.452.778-00",
-    "genre": "Feminino"
+    "genre": "Masculino"
   }
   ```
 
@@ -130,7 +128,7 @@ A seguir, estão listadas as rotas disponíveis para o CRUD de usuários, juntam
       "fullname": "Exemplo Nome",
       "dateOfBirth": "1990-01-01",
       "cpf": "123.456.789-00",
-      "genre": "Masculino",
+      "genre": "Feminino",
       "email": "exemplo@email.com"  
   }
   ```
